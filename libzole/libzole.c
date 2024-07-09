@@ -38,19 +38,9 @@ void initializeDeck() {
     }
 }
 
-int getColor(int n) {
-    return n & 3 | n >> 4 << 1 | n >> 4;
-}
-
-int maxOf3(int a, int b, int c) {
-    return (c > a & c > b) << 1 | (b > a & b > c);
-}
-
-int transform(int n, int color) {
-    return n & -(n >> 4 | (n & 3) == color);
-}
-
 int winner(int a, int b, int c) {
-    int color = getColor(a);
-    return maxOf3(a, transform(b, color), transform(c, color));
+    int t(int n) {
+        return n & -(n >> 4 | n % 4 == a % 4);
+    }
+    return ((c = t(c)) > a | ((b = t(b)) > a)) << (c > b);
 }
