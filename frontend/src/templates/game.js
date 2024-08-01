@@ -26,7 +26,7 @@ class Game extends Element
       console.log(responseObject)
       let cmd = {
         cmd: "SETUSERNAME",
-        name: "BUBA"
+        name: "TEST"
       }
       this.ws.send(JSON.stringify(cmd))
       cmd = {
