@@ -24,11 +24,12 @@ static int callbackWebsocket(struct lws *wsi, enum lws_callback_reasons reason, 
 
             lwsl_user("Received message: %s\n", (char *)received_msg);
             cJSON *receivedJSON = cJSON_Parse(received_msg);
-            json_cmd = cJSON_GetObjectItemCaseSensitive(receivedJSON, "cmd");
 
             char reply[MAX_MESSAGE_LEN];
             const cJSON *json_cmd = NULL;
             const cJSON *json_name = NULL;
+
+            json_cmd = cJSON_GetObjectItemCaseSensitive(receivedJSON, "cmd");
 
             if (strcmp(json_cmd->valuestring, "GETUSERNAME") == 0) {
                 snprintf(reply, sizeof(reply), "{\"username\": \"%s\"}", (char *)username);
@@ -36,7 +37,7 @@ static int callbackWebsocket(struct lws *wsi, enum lws_callback_reasons reason, 
                 json_name = cJSON_GetObjectItemCaseSensitive(receivedJSON, "name");
                 snprintf(reply, sizeof(reply), "{\"username\": \"%s\"}", (char *)(json_name->valuestring));
                 memcpy(username, json_name, strlen(json_name->valuestring));
-            } 
+            }
 
             lws_write(wsi, (unsigned char *)reply, strlen(reply), LWS_WRITE_TEXT);
             break;
