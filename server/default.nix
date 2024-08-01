@@ -11,6 +11,8 @@ pkgs.stdenv.mkDerivation {
     pkgs.libwebsockets
     pkgs.openssl
     pkgs.spawn_fcgi
+    pkgs.hiredis
+    pkgs.cjson
   ];
 
   buildPhase = ''

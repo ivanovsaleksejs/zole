@@ -1,3 +1,6 @@
 *.o
 *.asm
-zole
+*.log
+server/zole
+frontend/dist
+node_modules

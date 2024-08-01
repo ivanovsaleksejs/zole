@@ -2,8 +2,8 @@
 CC = gcc
 CFLAGS = -Wall -g -O3
 CFLAGS_NODEBUG = -Wall -O3
-LIBFLAGS = -Ilibzole -Itests
-LDFLAGS = -lfcgi -lwebsockets -lpthread
+LIBFLAGS = -Ilibzole -Itests 
+LDFLAGS = -lfcgi -lwebsockets -lpthread -lhiredis -lcjson
 
 # Targets
 all: zole

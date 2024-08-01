@@ -40,7 +40,7 @@ void initializeDeck() {
 
 int winner(int a, int b, int c) {
     int t(int n) {
-        return n & -(n >> 4 | n % 4 == a % 4);
+        return n & -(n >> 4 | (n & 3) == (a & 3));
     }
     return ((c = t(c)) > a | ((b = t(b)) > a)) << (c > b);
 }
